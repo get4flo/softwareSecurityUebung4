@@ -1,0 +1,31 @@
+# to run exploit run
+docker compose up exploit
+
+# local execution in devcontainer with debugging
+python3 exploit.py LOCAL GDB
+python3 exploit.py LOCAL LOCAL_LIBC GDB
+
+# get libc version
+./libc.so.6 --version
+
+# get address layout
+info proc mappings
+
+# disable aslr
+# gdb command: set disable-randomization on -> doent work
+# disable
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+# enable
+echo 2 | sudo tee /proc/sys/kernel/randomize_va_space
+
+# check heap for strings (use heap start and end to define search range)
+find 0x603000, 0x624000, "user1"
+
+# check content of user array
+x/36gx 0x6032a0
+
+# check # of user entries
+x/8gx 0x602141
+
+# list of user pointers
+x/8gx 0x6020c0
