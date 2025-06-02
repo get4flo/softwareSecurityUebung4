@@ -29,3 +29,21 @@ x/8gx 0x602141
 
 # list of user pointers
 x/8gx 0x6020c0
+
+
+# search stack for pointers -> search for: 0x6032b0
+find 0x400000, 0x402000, 0x6032
+find 0x601000, 0x603000, 0x6032
+
+# pwndbg print hex
+hexdump 0x6032a0 0x100
+hexdump 0x6032a0 0x90
+
+
+#-------------------------- tmp
+
+# structure:
+0x6020c0 = 0x00000000006032a0
+0x6032a0 = 0x0000003172657375 (user1)
+
+
