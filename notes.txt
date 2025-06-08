@@ -23,6 +23,7 @@ find 0x603000, 0x624000, "user1"
 
 # check content of user array
 x/36gx 0x6032a0
+x/64gx 0x6032a0
 
 # check # of user entries
 x/8gx 0x602141
